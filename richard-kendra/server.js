@@ -37,7 +37,7 @@ app.get('/new-article', (request, response) => {
 // REVIEW: Routes for making API calls to use CRUD Operations on our database
 app.get('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // This line of code matches #3 in the diagram, which is making a query to the database. This interacts with the method fetchAll() in article.js, which asks for all the article data. This corresponds to the "R" in CRUD, because it's retrieving data from the database.
+  // This line of code matches #3 & #5 in the diagram, which is making a query to the database and sending a response. This interacts with the method fetchAll() in article.js, which asks for all the article data. This corresponds to the "R" in CRUD, because it's retrieving data from the database.
   client.query('')
     .then(function(result) {
       response.send(result.rows);
@@ -49,7 +49,7 @@ app.get('/articles', (request, response) => {
 
 app.post('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // This matches #3 in the diagram, making a query to the database. It's used by Article.insertRecord() to create a new record for an article in the DB. This corresponds to the 'C' in CRUD, since it CREATES a new entry in the DB.
+  // This matches #3 & #5 in the diagram, making a query to the database. It's used by Article.insertRecord() to create a new record for an article in the DB. This corresponds to the 'C' in CRUD, since it CREATES a new entry in the DB.
   let SQL = `
     INSERT INTO articles(title, author, author_url, category, published_on, body)
     VALUES ($1, $2, $3, $4, $5, $6);
@@ -75,7 +75,7 @@ app.post('/articles', (request, response) => {
 
 app.put('/articles/:id', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // This also matches #3 in the diagram, since it queries the DB. It's used by Article.updateRecord to update a record in the DB. This matches the 'U' in CRUD, since it's updating the record.
+  // This also matches #3 & #5 in the diagram, since it queries the DB and responds to the client. It's used by Article.updateRecord to update a record in the DB. This matches the 'U' in CRUD, since it's updating the record.
 
   let SQL = '';
   let values = [];
@@ -91,7 +91,7 @@ app.put('/articles/:id', (request, response) => {
 
 app.delete('/articles/:id', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // This matches #3 and #5 in the diagram. It's making a request to the DB to delete the article with the given id and responds to the client. This is used by the method Article.deleteRecord() in article.js. This matches the 'D' in CRUD, (destroy a record).
 
   let SQL = `DELETE FROM articles WHERE article_id=$1;`;
   let values = [request.params.id];
@@ -107,7 +107,7 @@ app.delete('/articles/:id', (request, response) => {
 
 app.delete('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // This also matches #'s 3 and 5 in the diagram since it queries the DB and sends a response to the client. It's used by Article.truncateTable to either delete or shorten a table in the DB. This corresponds to the 'D' in CRUD, destroy a table.
 
   let SQL = '';
   client.query( SQL )
