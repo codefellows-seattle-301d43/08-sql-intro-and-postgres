@@ -4,11 +4,24 @@
   "description": "As we now complete our MVC conversation, we can refactor our app to use good MVC separation of concerns.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon --watch src server.js",
+    "lint": "eslint ."
   },
   "author": "Code Fellows",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "express": "^4.16.2"
-  }
+    "express": "^4.16.3",
+    "cors": "^2.8.4",
+    "nodemon": "1.18.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rh24/08-sql-intro-and-postgres.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rh24/08-sql-intro-and-postgres/issues"
+  },
+  "homepage": "https://github.com/rh24/08-sql-intro-and-postgres#readme"
 }
