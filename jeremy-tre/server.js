@@ -5,18 +5,19 @@ const express = require('express');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
+const pg = require('pg');
 
 // Windows and Linux users: You should have retained the user/password from the pre-work for this course.
 // Your OS may require that your conString is composed of additional information including user and password.
-const conString = 'postgres://mnfmnfm:postgrespassword@localhost:5432/kilovolt';
+// const conString = 'postgres://mnfmnfm:postgrespassword@localhost:5432/kilovolt';
 
 // Mac:
-// const conString = 'postgres://localhost:5432';
+const conString = 'postgres://localhost:5432';
 
-const client = new pg.Client();
+const client = new pg.Client(conString);
 
 // REVIEW: Use the client object to connect to our DB.
-client.connect(conString);
+client.connect();
 
 
 // REVIEW: Install the middleware plugins so that our app can parse the request body
@@ -28,7 +29,7 @@ app.use(express.static('./public'));
 // REVIEW: Routes for requesting HTML resources
 app.get('/new-article', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js, if any, is interacting with this particular piece of `server.js`? What part of CRUD, if any, is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // 2 & 5; Article.fetchAll interacts with this code in article.js. Read is enacted with this code as well.
   response.sendFile('new.html', {root: './public'});
 });
 
@@ -36,7 +37,7 @@ app.get('/new-article', (request, response) => {
 // REVIEW: Routes for making API calls to use CRUD Operations on our database
 app.get('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // 3 & 4 of the diagram. Article.truncateTable/insertRecord/updateRecord/deleteRecord interact with this server.js code that interacts with the dB.
   client.query('')
     .then(function(result) {
       response.send(result.rows);
@@ -157,6 +158,7 @@ function loadArticles() {
 function loadDB() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // PUT YOUR RESPONSE HERE
+  console.log('loadDB running');
   client.query(`
     CREATE TABLE IF NOT EXISTS articles (
       article_id SERIAL PRIMARY KEY,
