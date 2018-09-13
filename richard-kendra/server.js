@@ -37,7 +37,7 @@ app.get('/new-article', (request, response) => {
 // REVIEW: Routes for making API calls to use CRUD Operations on our database
 app.get('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // This line of code matches #3 in the diagram, which is making a query to the database. This interacts with the method fetchAll() in article.js, which asks for all the article data. This corresponds to the "R" in CRUD, because it's retrieving data from the database.
   client.query('')
     .then(function(result) {
       response.send(result.rows);
