@@ -34,6 +34,7 @@ Article.fetchAll = callback => {
     .then(
       function (results) {
         // REVIEW: Call loadAll, and pass in the results, then invoke the callback.
+        console.log(results);
         Article.loadAll(results);
         callback();
       }
