@@ -22,7 +22,7 @@ client.connect();
 
 // REVIEW: Install the middleware plugins so that our app can parse the request body
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 
 
@@ -43,7 +43,7 @@ app.get('/articles', (request, response) => {
 
   client.query('SELECT * from ARTICLES')
     .then(function (result) {
-      console.log(result);
+      // console.log(result);
       response.send(result.rows);
     })
     .catch(function (err) {
@@ -145,7 +145,6 @@ function loadArticles() {
   let SQL = 'SELECT COUNT(*) FROM articles';
   client.query(SQL)
     .then(result => {
-      // console.log(result.rows[0])
       // REVIEW: result.rows is an array of objects that PostgreSQL returns as a response to a query.
       // If there is nothing on the table, then result.rows[0] will be undefined, which will make count undefined. parseInt(undefined) returns NaN. !NaN evaluates to true.
       // Therefore, if there is nothing on the table, line 158 will evaluate to true and enter into the code block.
