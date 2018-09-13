@@ -2,13 +2,14 @@
 
 const fs = require('fs');
 const express = require('express');
+const pg = require('pg');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
 
 // Windows and Linux users: You should have retained the user/password from the pre-work for this course.
 // Your OS may require that your conString is composed of additional information including user and password.
-const conString = 'postgres://mnfmnfm:postgrespassword@localhost:5432/kilovolt';
+const conString = 'postgres://kendragon:Zip9tape!@localhost:5432/kilovolt';
 
 // Mac:
 // const conString = 'postgres://localhost:5432';
@@ -28,7 +29,7 @@ app.use(express.static('./public'));
 // REVIEW: Routes for requesting HTML resources
 app.get('/new-article', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js, if any, is interacting with this particular piece of `server.js`? What part of CRUD, if any, is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // The following line of code matches #5 in the full-stack-diagram.png. It appears that no methods in article.js interact with this piece of server.js. This piece also is not a part of CRUD, because it's just serving the new.html page and does not do anything with the app's data in the database.
   response.sendFile('new.html', {root: './public'});
 });
 
