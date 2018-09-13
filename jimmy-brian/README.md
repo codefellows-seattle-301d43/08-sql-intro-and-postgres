@@ -23,6 +23,7 @@ HTML, Javascript, CSS, SQL
 
 01-01-2001 4:59pm - Application now has a fully-functional express server, with GET and POST routes for the book resource. -->
 
+09-13-2018 9:59 - Removed all JSON exporting code
 09-13-2018 9:43 - Passed argument to instantiate a new client
 09-13-3018 9:39 - Completed the connection string
 09-13-2018 9:34 - Installed and required the NPM PostgreSQL package pg in the server.js file
