@@ -120,7 +120,7 @@ app.delete('/articles', (request, response) => {
 });
 
 // COMMENT: What is this function invocation doing?
-// PUT YOUR RESPONSE HERE
+// This first checks if there's a table in the DB called 'articles.' If the table does not exists, it creates it and then calls loadArticles() to load the table with the article data from hackerIpsum.json
 loadDB();
 
 app.listen(PORT, () => {
@@ -139,7 +139,7 @@ function loadArticles() {
     .then(result => {
     // REVIEW: result.rows is an array of objects that PostgreSQL returns as a response to a query.
     // If there is nothing on the table, then result.rows[0] will be undefined, which will make count undefined. parseInt(undefined) returns NaN. !NaN evaluates to true.
-    // Therefore, if there is nothing on the table, line 158 will evaluate to true and enter into the code block.
+    // Therefore, if there is nothing on the table, line 143 will evaluate to true and enter into the code block.
       if(!parseInt(result.rows[0].count)) {
         fs.readFile('./public/data/hackerIpsum.json', 'utf8', (err, fd) => {
           JSON.parse(fd).forEach(ele => {
