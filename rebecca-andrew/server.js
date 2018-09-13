@@ -30,7 +30,7 @@ app.use(express.static('./public'));
 app.get('/new-article', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js, if any, is interacting with this particular piece of `server.js`? What part of CRUD, if any, is being enacted/managed by this particular piece of code?
 
-  // The following line of code corresponds to number 5 in the full-stack-diagram. What this line of code is doing is sending a response to the client. In this case, it is the new.html file.
+  // The following line of code corresponds to number 5 in the full-stack-diagram. What this line of code is doing is sending a response to the client. In this case, it is the new.html file. There isn't a method in article.js that this line is interacting with. This is not enacting any part of CRUD; it is only serving up the new article form.
   response.sendFile('new.html', { root: './public' });
 });
 
