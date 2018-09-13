@@ -9,7 +9,7 @@ const app = express();
 
 // Windows and Linux users: You should have retained the user/password from the pre-work for this course.
 // Your OS may require that your conString is composed of additional information including user and password.
-const conString = 'postgres://allisalebeuf:lab8d@localhost:5432/kilovolt';
+const conString = 'postgres://carlos:labs@localhost:5432/kilovolt';
 
 // Mac:
 // const conString = 'postgres://localhost:5432';
@@ -38,7 +38,7 @@ app.get('/new-article', (request, response) => {
 app.get('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // It is numbers 2-5 on the diagram. In article.js, we are interacting with the .fetchAll method. In CRUD, we are reading.
-  client.query('')
+  client.query('SELECT * FROM articles;')
     .then(function(result) {
       response.send(result.rows);
     })
