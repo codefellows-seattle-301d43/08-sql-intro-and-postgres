@@ -29,7 +29,7 @@ app.use(express.static('./public'));
 app.get('/new-article', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js, if any, is interacting with this particular piece of `server.js`? What part of CRUD, if any, is being enacted/managed by this particular piece of code?
   // PUT YOUR RESPONSE HERE
-  response.sendFile('new.html', {root: './public'});
+  response.sendFile('new.html', { root: './public' });
 });
 
 
@@ -38,10 +38,10 @@ app.get('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // PUT YOUR RESPONSE HERE
   client.query('')
-    .then(function(result) {
+    .then(function (result) {
       response.send(result.rows);
     })
-    .catch(function(err) {
+    .catch(function (err) {
       console.error(err)
     })
 });
@@ -63,11 +63,11 @@ app.post('/articles', (request, response) => {
     request.body.body
   ]
 
-  client.query( SQL, values )
-    .then(function() {
+  client.query(SQL, values)
+    .then(function () {
       response.send('insert complete')
     })
-    .catch(function(err) {
+    .catch(function (err) {
       console.error(err);
     });
 });
@@ -79,7 +79,7 @@ app.put('/articles/:id', (request, response) => {
   let SQL = '';
   let values = [];
 
-  client.query( SQL, values )
+  client.query(SQL, values)
     .then(() => {
       response.send('update complete')
     })
@@ -95,7 +95,7 @@ app.delete('/articles/:id', (request, response) => {
   let SQL = `DELETE FROM articles WHERE article_id=$1;`;
   let values = [request.params.id];
 
-  client.query( SQL, values )
+  client.query(SQL, values)
     .then(() => {
       response.send('Delete complete')
     })
@@ -109,7 +109,7 @@ app.delete('/articles', (request, response) => {
   // PUT YOUR RESPONSE HERE
 
   let SQL = '';
-  client.query( SQL )
+  client.query(SQL)
     .then(() => {
       response.send('Delete complete')
     })
@@ -134,12 +134,12 @@ function loadArticles() {
   // PUT YOUR RESPONSE HERE
 
   let SQL = 'SELECT COUNT(*) FROM articles';
-  client.query( SQL )
+  client.query(SQL)
     .then(result => {
-    // REVIEW: result.rows is an array of objects that PostgreSQL returns as a response to a query.
-    // If there is nothing on the table, then result.rows[0] will be undefined, which will make count undefined. parseInt(undefined) returns NaN. !NaN evaluates to true.
-    // Therefore, if there is nothing on the table, line 158 will evaluate to true and enter into the code block.
-      if(!parseInt(result.rows[0].count)) {
+      // REVIEW: result.rows is an array of objects that PostgreSQL returns as a response to a query.
+      // If there is nothing on the table, then result.rows[0] will be undefined, which will make count undefined. parseInt(undefined) returns NaN. !NaN evaluates to true.
+      // Therefore, if there is nothing on the table, line 158 will evaluate to true and enter into the code block.
+      if (!parseInt(result.rows[0].count)) {
         fs.readFile('./public/data/hackerIpsum.json', 'utf8', (err, fd) => {
           JSON.parse(fd).forEach(ele => {
             let SQL = `
@@ -147,7 +147,7 @@ function loadArticles() {
               VALUES ($1, $2, $3, $4, $5, $6);
             `;
             let values = [ele.title, ele.author, ele.author_url, ele.category, ele.published_on, ele.body];
-            client.query( SQL, values );
+            client.query(SQL, values);
           })
         })
       }
