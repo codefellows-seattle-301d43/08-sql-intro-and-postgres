@@ -2,9 +2,10 @@
 
 const fs = require('fs');
 const express = require('express');
-
+const pg = require('pg');
 const PORT = process.env.PORT || 3000;
 const app = express();
+
 
 // Windows and Linux users: You should have retained the user/password from the pre-work for this course.
 // Your OS may require that your conString is composed of additional information including user and password.
