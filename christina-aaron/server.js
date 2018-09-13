@@ -62,7 +62,6 @@ app.post('/articles', (request, response) => {
     request.body.category,
     request.body.published_on,
     request.body.body,
-    request.params.id
   ]
 
   client.query( SQL, values ) // diagram 3, 4, 5
@@ -81,15 +80,15 @@ app.put('/articles/:id', (request, response) => {
   let SQL = `
   UPDATE articles
   SET 
-  title = $1
-  author = $2
-  author_url = $3
-  category = $4
-  published_on = $5
-  body = $6
-  WHERE article_id = $7`;
+    title = $1,
+    author = $2,
+    author_url = $3,
+    category = $4,
+    published_on = $5,
+    body = $6
+  WHERE article_id = $7;`;
 
-  let values = [  
+  let values = [
     request.body.title,
     request.body.author,
     request.body.author_url,
