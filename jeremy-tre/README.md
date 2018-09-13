@@ -4,21 +4,21 @@
 **Version**: 1.1.0 (increment the patch/fix version number up if you make more commits past your first submission)
 
 ## Overview
-<!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for a Code Fellows 301 class. (i.e. What's your problem domain?) -->
+I want to build a site that uses a Postgres SQL server to store, update, delete, and load articles to render on my page. 
 
 ## Getting Started
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+Review the code, then review the comments, then work through user stories to complete the lab. Then complete all the comments.
 
 ## Architecture
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+HTML, JS, Handlebars, Express, node.js, npm
 
 ## Change Log
 
-09-13-18
-09-13-18
+09-13-18 11:30am Complete all comments.
 09-13-18 11:10am Completed all SQL queries for functionality.
 09-13-18 09:20am Initial setup.
 
 ## Credits and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+Code Fellows - starter code
+Noah - rendering articles on the page
 -->
