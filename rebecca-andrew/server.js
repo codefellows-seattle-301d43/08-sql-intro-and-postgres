@@ -39,7 +39,7 @@ app.get('/new-article', (request, response) => {
 app.get('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
 
-  // The following lines of code are interacting with numbers 3 (query), 4 (result), and 5 (response). This enacts the READ part of CRUD.
+  // The following lines of code are interacting with numbers 3 (query), 4 (result), and 5 (response). This enacts the READ part of CRUD. The piece of article.js that is interacting with this code block is Article.fetchAll.
   client.query('')
     .then(function (result) {
       response.send(result.rows);
@@ -51,7 +51,8 @@ app.get('/articles', (request, response) => {
 
 app.post('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+
+  // This piece of code corresponds to numbers 2 (request), 3 (query), 5 (response). These lines of code interact with Article.prototype.insertRecord, and the CREATE part of CRUD is enacted.
   let SQL = `
     INSERT INTO articles(title, author, author_url, category, published_on, body)
     VALUES ($1, $2, $3, $4, $5, $6);
@@ -77,7 +78,8 @@ app.post('/articles', (request, response) => {
 
 app.put('/articles/:id', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+
+  // These lines of code correspond to numbers 3 (query), response (5). This is interacting with Article.prototype.updateRecord and enacts the UPDATE part of CRUD.
 
   let SQL = '';
   let values = [];
