@@ -40,10 +40,10 @@ app.get('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
 
   // The following lines of code are interacting with numbers 3 (query), 4 (result), and 5 (response). This enacts the READ part of CRUD. The piece of article.js that is interacting with this code block is Article.fetchAll.
-  // console.log('hi')
+
   client.query('SELECT * from ARTICLES')
     .then(function (result) {
-      console.log(result)
+      console.log(result);
       response.send(result.rows);
     })
     .catch(function (err) {
@@ -180,7 +180,6 @@ function loadDB() {
       body TEXT NOT NULL);`
   )
     .then(() => {
-      // console.log(client)
       loadArticles();
     })
     .catch(err => {
