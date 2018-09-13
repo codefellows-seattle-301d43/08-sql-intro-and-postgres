@@ -104,8 +104,8 @@ articleView.create = () => {
     hljs.highlightBlock(block);
   });
 
-  $('#export-field').show();
-  $('#article-json').val(`${JSON.stringify(article)},`);
+  // $('#export-field').show();
+  // $('#article-json').val(`${JSON.stringify(article)},`);
 };
 
 articleView.submit = event => {
