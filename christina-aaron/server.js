@@ -9,7 +9,7 @@ const app = express();
 
 // Windows and Linux users: You should have retained the user/password from the pre-work for this course.
 // Your OS may require that your conString is composed of additional information including user and password.
-const conString ='postgres://christinagislason:ilovebryan@localhost:5432/kilovolt'; 
+const conString ='postgres://aaron:zisamuse13!@localhost:5432/kilovolt'; 
 
 // Mac:
 // const conString = 'postgres://localhost:5432';
@@ -61,7 +61,8 @@ app.post('/articles', (request, response) => {
     request.body.author_url,
     request.body.category,
     request.body.published_on,
-    request.body.body
+    request.body.body,
+    request.params.id
   ]
 
   client.query( SQL, values ) // diagram 3, 4, 5
@@ -75,10 +76,28 @@ app.post('/articles', (request, response) => {
 
 app.put('/articles/:id', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // 3, 4, and 5 in the diagram correspond with the following lines of code. Article.prototype.updateRecord is the method of article.js that is interacting with this piece of server.js. The part of CRUD that is being enacted is UPDATE in this piece of code.
 
-  let SQL = '';
-  let values = [];
+  let SQL = `
+  UPDATE articles
+  SET 
+  title = $1
+  author = $2
+  author_url = $3
+  category = $4
+  published_on = $5
+  body = $6
+  WHERE article_id = $7`;
+
+  let values = [  
+    request.body.title,
+    request.body.author,
+    request.body.author_url,
+    request.body.category,
+    request.body.published_on,
+    request.body.body,
+    request.params.id
+  ];
 
   client.query( SQL, values )
     .then(() => {
@@ -91,7 +110,7 @@ app.put('/articles/:id', (request, response) => {
 
 app.delete('/articles/:id', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // 3, 4, and 5 in the diagram correspond with the following lines of code. Article.prototype.deleteRecord is the method of article.js that is interacting with this piece of server.js. The part of CRUD that is being enacted is DELETE in this piece of code.
 
   let SQL = `DELETE FROM articles WHERE article_id=$1;`;
   let values = [request.params.id];
@@ -107,9 +126,9 @@ app.delete('/articles/:id', (request, response) => {
 
 app.delete('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // 3, 4, and 5 in the diagram correspond with the following lines of code. Article.truncateTable is the method of article.js that is interacting with this piece of server.js. The part of CRUD that is being enacted is DELETE in this piece of code.
 
-  let SQL = '';
+  let SQL = 'DELETE FROM articles';
   client.query( SQL )
     .then(() => {
       response.send('Delete complete')
