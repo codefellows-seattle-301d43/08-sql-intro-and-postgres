@@ -29,7 +29,7 @@ app.use(express.static('./public'));
 // REVIEW: Routes for requesting HTML resources
 app.get('/new-article', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js, if any, is interacting with this particular piece of `server.js`? What part of CRUD, if any, is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // Numbers 2 and 5 of the full-stack diagram corresponds to the following line of code. This does not interact with the article.js page. There is no communication with the database so there is no part of CRUD that is being enacted.
   response.sendFile('new.html', {root: './public'});
 });
 
@@ -138,7 +138,7 @@ app.delete('/articles', (request, response) => {
 });
 
 // COMMENT: What is this function invocation doing?
-// PUT YOUR RESPONSE HERE
+// This function is defined below and the invocation is loading creating a table called articles in the database. Afterwards, it loads the articles table with data.
 loadDB();
 
 app.listen(PORT, () => {
@@ -150,7 +150,7 @@ app.listen(PORT, () => {
 ////////////////////////////////////////
 function loadArticles() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // 
 
   let SQL = 'SELECT COUNT(*) FROM articles';
   client.query( SQL )
@@ -175,7 +175,7 @@ function loadArticles() {
 
 function loadDB() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // Steps 3 and 4 in the diagram corresponds with the following lines of code. There is nothing happening in article.js. The part of CRUD that is being enacted is CREATE in this piece of code. 
   client.query(`
     CREATE TABLE IF NOT EXISTS articles (
       article_id SERIAL PRIMARY KEY,
