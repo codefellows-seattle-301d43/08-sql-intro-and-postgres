@@ -126,7 +126,7 @@ app.delete('/articles', (request, response) => {
 });
 
 // COMMENT: What is this function invocation doing?
-//creating the table in our database. 
+//creating the table in our database.
 loadDB();
 
 app.listen(PORT, () => {
@@ -138,7 +138,7 @@ app.listen(PORT, () => {
 ////////////////////////////////////////
 function loadArticles() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // corresponds to 3 (query) and 4 (result),doesn't interact with article.js, and enacts CREATE.
 
   let SQL = 'SELECT COUNT(*) FROM articles';
   client.query(SQL)
@@ -164,7 +164,7 @@ function loadArticles() {
 function loadDB() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
 
-  // corresponding to (3) query, it doesnt use any methods from article.js. There is nothing in this function that relates to CRUD. 
+  // corresponding to (3) query, it doesnt use any methods from article.js. There is nothing in this function that relates to CRUD.
 
   client.query(`
     CREATE TABLE IF NOT EXISTS articles (
