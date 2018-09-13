@@ -95,7 +95,8 @@ app.put('/articles/:id', (request, response) => {
 
 app.delete('/articles/:id', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+
+  // These lines correspond to numbers 3 (query), and 5 (response). They interact with Article.prototype.deleteRecord and enacts DESTROY.
 
   let SQL = `DELETE FROM articles WHERE article_id=$1;`;
   let values = [request.params.id];
@@ -111,7 +112,8 @@ app.delete('/articles/:id', (request, response) => {
 
 app.delete('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+
+  // These lines correspond to numbers 3 and 5. They interact with Article.truncateTable and enact DELETE.
 
   let SQL = '';
   client.query(SQL)
@@ -124,7 +126,7 @@ app.delete('/articles', (request, response) => {
 });
 
 // COMMENT: What is this function invocation doing?
-// PUT YOUR RESPONSE HERE
+//
 loadDB();
 
 app.listen(PORT, () => {
