@@ -1,7 +1,7 @@
 # SQL and PostgreSQL
 
 **Author**: Brian Nelson & Jimmy Nguyen
-**Version**: 1.0.1
+**Version**: 1.2.1
 
 ## Overview
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for a Code Fellows 301 class. (i.e. What's your problem domain?) -->
@@ -23,13 +23,16 @@ HTML, Javascript, CSS, SQL
 
 01-01-2001 4:59pm - Application now has a fully-functional express server, with GET and POST routes for the book resource. -->
 
-09-13-2018 10:34 - Verified app can properly query the DB
-09-13-2018 10:20 - SQL query now retrives all articles from the DB
-09-13-2018 9:59 - Removed all JSON exporting code
-09-13-2018 9:43 - Passed argument to instantiate a new client
-09-13-3018 9:39 - Completed the connection string
-09-13-2018 9:34 - Installed and required the NPM PostgreSQL package pg in the server.js file
-09-13-2018 9:06 - Set up environment, copied starter code
+09-13-2018 11:36am - finished the comments and updated readme.
+09-13-2018 11:24am - finished and verified delete query
+09-13-2018 11:17am - finished and verified update query
+09-13-2018 10:34am - Verified app can properly query the DB
+09-13-2018 10:20am - SQL query now retrives all articles from the DB
+09-13-2018 9:59am - Removed all JSON exporting code
+09-13-2018 9:43am - Passed argument to instantiate a new client
+09-13-3018 9:39am - Completed the connection string
+09-13-2018 9:34am - Installed and required the NPM PostgreSQL package pg in the server.js file
+09-13-2018 9:06am - Set up environment, copied starter code
 
 
 ## Credits and Collaborations
