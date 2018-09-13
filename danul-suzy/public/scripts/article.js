@@ -1,6 +1,6 @@
 'use strict';
 
-function Article (rawDataObj) {
+function Article(rawDataObj) {
   /* REVIEW: This is a new construct to save all the properties of rawDataObj into our newly instantiated object. Object.keys is a function that returns an array of all the properties of an object as strings. forEach is an array method that iterates over and calls a function on each element of an array.
   We can also set properties on objects with bracket notation instead of dot notation, which we must do when we don't necessarily know what the property name will be and thus set it as a variable.
   Additionally, what "this" is changes depending on your context - inside a constructor function, like Article, "this" refers to the newly instantiated object. However, inside the anonymous function we're passing into forEach as an argument, "this" in 'use strict' mode will be undefined. As a result, we can pass our instantiated object "this" into forEach as a second argument to preserve context.
@@ -12,10 +12,10 @@ function Article (rawDataObj) {
 
 Article.all = [];
 
-Article.prototype.toHtml = function() {
+Article.prototype.toHtml = function () {
   var template = Handlebars.compile($('#article-template').text());
 
-  this.daysAgo = parseInt((new Date() - new Date(this.published_on))/60/60/24/1000);
+  this.daysAgo = parseInt((new Date() - new Date(this.published_on)) / 60 / 60 / 24 / 1000);
   this.publishStatus = this.published_on ? `published ${this.daysAgo} days ago` : '(draft)';
   this.body = marked(this.body);
 
@@ -24,20 +24,20 @@ Article.prototype.toHtml = function() {
 
 // REVIEW: The parameter was refactored to expect the data from the database, rather than a local file.
 Article.loadAll = articleData => {
-  articleData.sort((a,b) => (new Date(b.published_on)) - (new Date(a.published_on)))
+  articleData.sort((a, b) => (new Date(b.published_on)) - (new Date(a.published_on)))
 
   articleData.forEach(articleObject => Article.all.push(new Article(articleObject)))
 };
 
 Article.fetchAll = callback => {
   $.get('/articles')
-  .then(
-    function(results) {
+    .then(
+      function (results) {
       // REVIEW: Call loadAll, and pass in the results, then invoke the callback.
-      Article.loadAll(results);
-      callback();
-    }
-  )
+        Article.loadAll(results);
+        callback();
+      }
+    )
 };
 
 
@@ -47,32 +47,32 @@ Article.truncateTable = callback => {
     url: '/articles',
     method: 'DELETE',
   })
-  .then(data => {
-    console.log(data);
-    if (callback) callback();
-  });
+    .then(data => {
+      console.log(data);
+      if (callback) callback();
+    });
 };
 
-Article.prototype.insertRecord = function(callback) {
-  $.post('/articles', {author: this.author, author_url: this.author_url, body: this.body, category: this.category, published_on: this.published_on, title: this.title})
-  .then(data => {
-    console.log(data);
-    if (callback) callback();
-  })
+Article.prototype.insertRecord = function (callback) {
+  $.post('/articles', { author: this.author, author_url: this.author_url, body: this.body, category: this.category, published_on: this.published_on, title: this.title })
+    .then(data => {
+      console.log(data);
+      if (callback) callback();
+    })
 };
 
-Article.prototype.deleteRecord = function(callback) {
+Article.prototype.deleteRecord = function (callback) {
   $.ajax({
     url: `/articles/${this.article_id}`,
     method: 'DELETE'
   })
-  .then(data => {
-    console.log(data);
-    if (callback) callback();
-  });
+    .then(data => {
+      console.log(data);
+      if (callback) callback();
+    });
 };
 
-Article.prototype.updateRecord = function(callback) {
+Article.prototype.updateRecord = function (callback) {
   $.ajax({
     url: `/articles/${this.article_id}`,
     method: 'PUT',
@@ -85,8 +85,8 @@ Article.prototype.updateRecord = function(callback) {
       title: this.title
     }
   })
-  .then(data => {
-    console.log(data);
-    if (callback) callback();
-  });
+    .then(data => {
+      console.log(data);
+      if (callback) callback();
+    });
 };
