@@ -14,10 +14,10 @@ const conString = 'postgres://kendragon:Zip9tape!@localhost:5432/kilovolt';
 // Mac:
 // const conString = 'postgres://localhost:5432';
 
-const client = new pg.Client();
+const client = new pg.Client(conString);
 
 // REVIEW: Use the client object to connect to our DB.
-client.connect(conString);
+client.connect();
 
 
 // REVIEW: Install the middleware plugins so that our app can parse the request body
