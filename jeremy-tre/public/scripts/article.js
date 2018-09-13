@@ -33,7 +33,8 @@ Article.fetchAll = callback => {
   $.get('/articles')
     .then(
       function(results) {
-      // REVIEW: Call loadAll, and pass in the results, then invoke the callback.
+        console.log(results);
+        // REVIEW: Call loadAll, and pass in the results, then invoke the callback.
         Article.loadAll(results);
         callback();
       }
