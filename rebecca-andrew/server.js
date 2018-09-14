@@ -84,12 +84,12 @@ app.put('/articles/:id', (request, response) => {
   // These lines of code correspond to numbers 3 (query), response (5). This is interacting with Article.prototype.updateRecord and enacts the UPDATE part of CRUD.
 
   let SQL = `UPDATE articles
-  SET title = $1,
-  SET author = $2,
-  SET author_url = $3,
-  SET category = $4,
-  SET published_on = $5,
-  SET body = $6
+  SET title = $1, 
+  author = $2, 
+  author_url = $3, 
+  category = $4, 
+  published_on = $5, 
+  body = $6
   WHERE article_id = $7`;
   let values = [
     request.body.title,
