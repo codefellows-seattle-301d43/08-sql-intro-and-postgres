@@ -22,7 +22,7 @@ client.connect();
 
 // REVIEW: Install the middleware plugins so that our app can parse the request body
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 
 
@@ -43,7 +43,7 @@ app.get('/articles', (request, response) => {
 
   client.query('SELECT * from ARTICLES')
     .then(function (result) {
-      console.log(result);
+      // console.log(result);
       response.send(result.rows);
     })
     .catch(function (err) {
@@ -83,8 +83,23 @@ app.put('/articles/:id', (request, response) => {
 
   // These lines of code correspond to numbers 3 (query), response (5). This is interacting with Article.prototype.updateRecord and enacts the UPDATE part of CRUD.
 
-  let SQL = '';
-  let values = [];
+  let SQL = `UPDATE articles
+  SET title = $1,
+  SET author = $2,
+  SET author_url = $3,
+  SET category = $4,
+  SET published_on = $5,
+  SET body = $6
+  WHERE article_id = $7`;
+  let values = [
+    request.body.title,
+    request.body.author,
+    request.body.author_url,
+    request.body.category,
+    request.body.published_on,
+    request.body.body,
+    request.params.id
+  ];
 
   client.query(SQL, values)
     .then(() => {
@@ -117,7 +132,7 @@ app.delete('/articles', (request, response) => {
 
   // These lines correspond to numbers 3 and 5. They interact with Article.truncateTable and enact DELETE.
 
-  let SQL = '';
+  let SQL = `DELETE * FROM articles;`;
   client.query(SQL)
     .then(() => {
       response.send('Delete complete')
@@ -145,7 +160,6 @@ function loadArticles() {
   let SQL = 'SELECT COUNT(*) FROM articles';
   client.query(SQL)
     .then(result => {
-      // console.log(result.rows[0])
       // REVIEW: result.rows is an array of objects that PostgreSQL returns as a response to a query.
       // If there is nothing on the table, then result.rows[0] will be undefined, which will make count undefined. parseInt(undefined) returns NaN. !NaN evaluates to true.
       // Therefore, if there is nothing on the table, line 158 will evaluate to true and enter into the code block.
